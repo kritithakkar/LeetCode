@@ -1,0 +1,17 @@
+class Solution {
+public:
+    //can be done in n^4 easily, but we will do it in n^2
+    int fourSumCount(vector<int>& p, vector<int>& q, vector<int>& r, vector<int>& s) 
+    {
+        unordered_map<int, int> m;
+        int n = p.size();
+        int count = 0;
+        for(int i=0; i<n; i++) //store the sum of every element of A with every element of B in map
+            for(int j=0; j<n; j++) m[p[i] + q[j]]++;
+        for(int i=0; i<n; i++) //if for every sum of C and D, negetive sum is found in map, update count
+            for(int j=0; j<n; j++) count+= m[-(r[i] + s[j])];
+        
+        return count;
+        
+    }
+};
